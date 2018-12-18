@@ -1,5 +1,5 @@
-from splitjoin.split import Split
-from splitjoin.join import Join
+from pysj.split import Split
+from pysj.join import Join
 import click
 
 
@@ -15,10 +15,9 @@ def sj(arg, filename, part, algo):
     arg: SPLIT / JOIN.
 
     filename: <filename>.
-    
+
     part: Split size (in MB) / Number of parts (if JOIN).
     """
-
 
     if (arg.lower() == 'split'):
         Split.split(filename=filename, partsize=part, algo=algo)

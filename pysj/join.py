@@ -57,18 +57,23 @@ class Join:
                         i += 1
 
                 fhash = ""
-                with open('hash.txt', 'r') as f:
-                    lines = f.read().splitlines()
-                    fhash = lines[-1].split(':')[1][1:]
+                if os.path.exists('hash.txt'):
+                    with open('hash.txt', 'r') as f:
+                        lines = f.read().splitlines()
+                        fhash = lines[-1].split(':')[1][1:]
 
-                if (fhash == fdesthash.hexdigest()):
-                    time_taken = time.time() - start_time
-                    sys.stdout.write(
-                        f'Joint successful! Time taken: {time_taken:.2f} s.\n'
-                    )
+                    if (fhash == fdesthash.hexdigest()):
+                        time_taken = time.time() - start_time
+                        sys.stdout.write(
+                            f'Joint success! Time taken: {time_taken:.2f} s.\n'
+                        )
+                    else:
+                        sys.stdout.write(
+                            f'Hash mismatch! Joint operation failed!\n'
+                        )
                 else:
                     sys.stdout.write(
-                        f'Hash mismatch! Joint operation failed!\n'
+                        f'hash.txt not found! Final file hashes unverified!\n'
                     )
 
             else:
